@@ -18,11 +18,11 @@ let cart = [];
 let buttonDOM = [];
 
 var profile_viewer_uid = 1;
-$.ajax({
-  url: "serverScript.php",
-  method: "POST",
-  data: { "profile_viewer_uid": profile_viewer_uid }
-})
+// $.ajax({
+//   url: "serverScript.php",
+//   method: "POST",
+//   data: { "profile_viewer_uid": profile_viewer_uid }
+// })
 
 
 class UI {
@@ -255,7 +255,12 @@ class UI {
 class Products {
   async getProducts() {
     try {
-      const result = await fetch("./products.json");
+      const result = await fetch("products.json", {
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+       });
       const data = await result.json();
       const products = data.items;
       return products;
